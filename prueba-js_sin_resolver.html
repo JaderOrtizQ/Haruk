@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Tecnica JavaScript</title>
+    <style>
+    	* {
+		  box-sizing: border-box;
+		}
+
+		body {
+		  margin: 0;
+		  background: #111;
+		}
+
+		img {
+		  display: block;
+		  max-width: 100%;
+		}
+
+		.galeria {
+		  padding: 20px;
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: center;
+		}
+
+		.item {
+		  width: 80%;
+		  cursor: pointer;
+		}
+		@media (min-width:480px) {
+		  .item {
+		    width: 48%;
+		    margin: 5px;
+		  }
+		}
+		@media (min-width:768px) {
+		  .item {
+		    width: 30%;
+		  }
+		}
+		@media (min-width:1024px) {
+		  .item {
+		    width: 20%;
+		    margin: 15px;
+		  }
+		}
+
+		.modal {
+		  position: fixed;
+		  width: 100%;
+		  height: 100vh;
+		  background: rgba(0,0,0,0.7);
+		  top: 0;
+		  left: 0;
+		  
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+
+		.modal__img {
+		  width: 70%;
+		  max-width: 700px;
+		}
+
+		.modal__boton {
+		  width: 50px;
+		  height: 50px;
+		  color: #fff;
+		  font-weight: bold;
+		  font-size: 25px;
+		  font-family: monospace;
+		  line-height: 50px;
+		  text-align: center;
+		  background: red;
+		  border-radius: 50%;
+		  cursor: pointer;
+		  
+		  position: absolute;
+		  right: 10px;
+		  top: 10px;
+		}
+    </style>
+    <script type="text/javascript">
+        function loadImage() {
+            $('.ima_galeria').click(function(e){
+			  var img = e.target.src;
+			  var modal = '<div class="modal" id="modal"><img src="'+ img + '" class="modal__img"><div class="modal__boton" id="modal__boton">X</div></div>';
+			  $('body').append(modal);
+			  $('#modal__boton').click(function(){
+			    $('#modal').remove();
+			  })
+			});
+
+
+			$(document).keyup(function(e){
+			  if (e.which==27) {
+			    $('#modal').remove();
+			  }
+			});
+
+			var archivo = document.getElementById("file").files[0];
+			  var reader = new FileReader();
+			  if (file) {
+			    reader.readAsDataURL(archivo );
+			    reader.onloadend = function () {
+			      document.getElementById("img").src = reader.result;
+			    }
+			  }
+        }
+    </script>
+</head>
+
+<body onload="loadImage()">
+
+	<h1 style="color: #fff; text-align: center;">Galeria de Imagenes Con JavaScript</h1>
+	<p style="color: #fff; text-align: center;">Prueba Tecnica HARUK</p>
+
+	<input class="item" style="color: #fff; text-align: center;" type="file" id="file" accept="image/*" onchange="loadImage()"/>
+	<br>
+	<img class="ima_galeria" style="width: 400px" id="img"/>
+
+<ul class="galeria">
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/186446/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/548996/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/689521/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/652539/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/516249/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/175760/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/162730/1024/768" class="ima_galeria"></li>
+      <li class="item"><img src="http://www.hdfondos.eu/preview/get_photo/678412/1024/768" class="ima_galeria"></li>
+    </ul>
+
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script  src="./script.js"></script>
+</body>
+</html>
